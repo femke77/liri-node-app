@@ -1,1 +1,3 @@
-# liri-node-app
+# LIRI
+
+LIRI is a Language Interpretation and Recognition Interface. LIRI is a CLI node app which allows users to enter artists, band names, song or movie titles, and fetches relavent information about the input according to one of several methods presented at startup. The user can chose to get upcoming concert information or details regarding songs and movies. The user can enter the method choice and search value from the cLI prompts or tell LIRI to read their command and search value from a text file. 
