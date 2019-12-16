@@ -1,12 +1,11 @@
 require("dotenv").config();
 
-var axios = require("axios");
-var moment = require("moment");
-var Spotify = require('node-spotify-api');
-var inquirer = require("inquirer");
-var keys = require("./keys.js");
-
-var spotify = new Spotify(keys.spotify);
+const axios = require("axios");
+const moment = require("moment");
+const inquirer = require("inquirer");
+const keys = require("./keys.js");
+const Spotify = require('node-spotify-api');
+const spotify = new Spotify(keys.spotify);
 
 inquirer.prompt([
 
@@ -25,11 +24,30 @@ inquirer.prompt([
 
 ]).then(function (response) {
     console.log(`${response.method} and ${response.userInput}`);
-    concertThis(response.userInput);
-});
+    
+    switch (response.method) {
+        case "concert-this":
+            concertThis(response.userInput);
+            break;
+        case "spotify-this":
+            spotifyThis(response.userInput);
+            break;
+        case "movie-this":
+            movieThis(response.userInput);
+            break;
+        case "read-from-file":
+
+            break;
+        default:
+        // code ?
+    }
+
+}).catch(function (error) {
+    console.log(`An error has occured: ${error}`);
+})
 
 function concertThis(userInput){
-    //for each venue name, loc, date time w moment format
+    
     var queryURL = "https://rest.bandsintown.com/artists/" + userInput + "/events?app_id=codingbootcamp";
     axios.get(queryURL)
     .then(function(response){
@@ -37,16 +55,46 @@ function concertThis(userInput){
         response.data.forEach(element => {
             var dateTime = element.datetime;
             dateTime = dateTime.split('T').join(' ');
-            var convertDateTime = moment(dateTime, format)
+            var convertDateTime = moment(dateTime, format);
             
-            console.log(`Venue: ${element.venue.name}
+            console.log(`***************************
+Venue: ${element.venue.name}
 Location: ${element.venue.city}, ${element.venue.region}
-Date: ${convertDateTime.format("MM/DD/YY hh:mm A")}
-***************************`)
+Date: ${convertDateTime.format("MM/DD/YY hh:mm A")}`)
         });
-
     }) 
     .catch(function(error){
         console.log(`An error has occured: ${error}`);
-    })
+    });
+}
+
+
+function spotifyThis(userInput) {  
+    if (userInput === "") {
+        userInput = '"the sign"year:1993'
+    }
+    spotify
+        .search({ type: 'track', query: '"' + userInput + '"', limit: 10 })
+        .then(function (response) {
+            if (response.tracks.items.length > 0) {
+                response.tracks.items.forEach(element => {
+                    var artists = [];
+                    element.artists.forEach(e => {
+                        artists.push(e.name)
+
+                    });
+                    console.log("____________________________________");
+                    console.log(`
+Artist(s): ${artists.join(', ')}
+Song name: ${element.name}
+Album name: ${element.album.name}
+Preview link: ${element.preview_url}`)
+                });
+            } else {
+                console.log("Nothing found with that search input. Try again?")
+            }
+        })
+        .catch(function (err) {
+            console.log(err);
+        });
 }
