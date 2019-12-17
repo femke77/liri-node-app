@@ -23,8 +23,7 @@ inquirer.prompt([
     }
 
 ]).then(function (response) {
-    console.log(`${response.method} and ${response.userInput}`);
-    
+   
     switch (response.method) {
         case "concert-this":
             concertThis(response.userInput);
@@ -81,7 +80,6 @@ function spotifyThis(userInput) {
                     var artists = [];
                     element.artists.forEach(e => {
                         artists.push(e.name)
-
                     });
                     console.log("____________________________________");
                     console.log(`
@@ -95,6 +93,32 @@ Preview link: ${element.preview_url}`)
             }
         })
         .catch(function (err) {
-            console.log(err);
+            console.log(`An error has occured: ${error}`);
         });
+}
+
+function movieThis(userInput){
+
+    if (userInput === ""){
+        userInput = "Mr. Nobody";
+    }
+    var queryUrl = "http://www.omdbapi.com/?t=" + userInput + "&type=movie&plot=short&apikey=trilogy";
+    axios.get(queryUrl)
+    .then(function(response){
+        if (response.data.Response === "True" ) {
+            console.log(`
+Movie Title: ${response.data.Title}
+Release Year: ${response.data.Year}
+IMDB Rating: ${response.data.imdbRating}
+Rotten Tomato Rating: ${response.data.Ratings[1].Value}
+Production country: ${response.data.Country}
+Plot: ${response.data.Plot}
+Actors: ${response.data.Actors}`);
+        } else {
+            console.log("No movie found with that title. Try again?")
+        }
+        
+    }).catch(function(error){
+        console.log(`An error has occured: ${error}`);
+    })
 }
