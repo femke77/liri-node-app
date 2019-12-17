@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const fs = require("fs");
 const axios = require("axios");
 const moment = require("moment");
 const inquirer = require("inquirer");
@@ -13,7 +14,7 @@ inquirer.prompt([
         type: "list",
         name: "method",
         message: "Please tell LIRI what you want to do.",
-        choices: ["concert-this", "spotify-this", "movie-this", "read-from-file"],
+        choices: ["concert-this", "spotify-this-song", "movie-this", "read-from-file"],
     },
     {
         type: "input",
@@ -24,26 +25,29 @@ inquirer.prompt([
 
 ]).then(function (response) {
    
-    switch (response.method) {
-        case "concert-this":
-            concertThis(response.userInput);
-            break;
-        case "spotify-this":
-            spotifyThis(response.userInput);
-            break;
-        case "movie-this":
-            movieThis(response.userInput);
-            break;
-        case "read-from-file":
-
-            break;
-        default:
-        // code ?
-    }
+    methods(response.method, response.userInput);
 
 }).catch(function (error) {
     console.log(`An error has occured: ${error}`);
 })
+
+function methods(method, input) {
+    switch (method) {
+        case "concert-this":
+            concertThis(input);
+            break;
+        case "spotify-this-song":
+            spotifyThis(input);
+            break;
+        case "movie-this":
+            movieThis(input);
+            break;
+        case "read-from-file":
+            readFromFile();
+            break;
+        default:
+    }
+}
 
 function concertThis(userInput){
     
@@ -121,4 +125,16 @@ Actors: ${response.data.Actors}`);
     }).catch(function(error){
         console.log(`An error has occured: ${error}`);
     })
+}
+
+function readFromFile(){
+    fs.readFile("random.txt", "utf8", function(error, data){
+        if (error) {
+            console.log(`An error has occured: ${error}`);
+        }
+        dataArray = data.split(",")
+        var method = dataArray[0];
+        var lookup = dataArray[1];
+        methods(method, lookup);      
+    });
 }

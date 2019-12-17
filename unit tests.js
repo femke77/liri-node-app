@@ -8,9 +8,29 @@ const inquirer = require("inquirer");
 const keys = require("./keys.js");
 const Spotify = require('node-spotify-api');
 const spotify = new Spotify(keys.spotify);
+const fs = require("fs");
 
-
-
+function concertThis(userInput){
+    
+    var queryURL = "https://rest.bandsintown.com/artists/" + userInput + "/events?app_id=codingbootcamp";
+    axios.get(queryURL)
+    .then(function(response){
+        var format = "YYYY-MM-DD HH:mm:ss"
+        response.data.forEach(element => {
+            var dateTime = element.datetime;
+            dateTime = dateTime.split('T').join(' ');
+            var convertDateTime = moment(dateTime, format);
+            
+            console.log(`***************************
+Venue: ${element.venue.name}
+Location: ${element.venue.city}, ${element.venue.region}
+Date: ${convertDateTime.format("MM/DD/YY hh:mm A")}`)
+        });
+    }) 
+    .catch(function(error){
+        console.log(`An error has occured: ${error}`);
+    });
+}
 
 function spotifyThis(userInput) {
   
@@ -20,6 +40,7 @@ function spotifyThis(userInput) {
     spotify
         .search({ type: 'track', query: '"' + userInput + '"', limit: 10 })
         .then(function (response) {
+            // console.log(response);
             if (response.tracks.items.length > 0) {
                 response.tracks.items.forEach(element => {
                     var artists = [];
@@ -54,7 +75,6 @@ Preview link: ${element.preview_url}`)
 
 //---------------------------------------------------------------------------------------------------------------------------------------
 
-
 function movieThis(userInput){
 
     if (userInput === ""){
@@ -64,6 +84,7 @@ function movieThis(userInput){
     axios.get(queryUrl)
     .then(function(response){
         if (response.data.Response === "True" ) {
+            // console.log(response);
             console.log(`
 Movie Title: ${response.data.Title}
 Release Year: ${response.data.Year}
@@ -91,6 +112,60 @@ Actors: ${response.data.Actors}`);
 //-----------------------------------------------------------------------------------------
 
 function readFromFile(){
-
+    fs.readFile("random.txt", "utf8", function(error, data){
+        if (error) {
+            console.log(`An error has occured: ${error}`);
+        }
+        console.log(data);
+        console.log(data.split(","))
+        dataArray = data.split(",")
+        var method = dataArray[0];
+        var lookup = dataArray[1];
+        console.log(method);
+        console.log(lookup);
+        methods(method, lookup);
+       
     
+    });
+
 }
+
+readFromFile();
+
+function methods(method, input) {
+    switch (method) {
+        case "concert-this":
+            concertThis(input);
+            break;
+        case "spotify-this":
+            spotifyThis(input);
+            break;
+        case "movie-this":
+            movieThis(input);
+            break;
+        case "read-from-file":
+            readFromFile();
+            break;
+        default:
+        
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//TODO: finish read from file method
+//      finish the README w screenshots
+//BONUS: add log
+//       add year for movies so user can get exact movie if name refers to > 1 movie
