@@ -8,10 +8,10 @@ LIRI is written in JavaScript and uses Node.js runtime environment to function a
 
 ## How to use
 
-**High Level**
+**High Level**\
 LIRI will prompt the user at runtime to enter one of four choices for the type of information desired. Then it will prompt the user to enter the specific search term. The requested information will appear on the command line screen if the search term was viable. If there is a problem with the search term, LIRI will let the user know. 
 
-**Detailed Instructions with Screenshots**
+**Detailed Instructions with Screenshots**\
 Please provide a spotify api client and secret key in your own .env file. Once that is included, you can run in terminal: 
 >node liri.js
 
@@ -27,7 +27,7 @@ To get information about a specific song, chose "spotify-this-song" and at the n
 
 ![spotify-this](https://user-images.githubusercontent.com/23327932/71132351-09c1aa80-21ac-11ea-9510-5c6fc22d6c4c.png)
 
-To get detailed information about a movie, chose "movie-this" from the main menu, and enter the movie title you are looking for. 
+To get detailed information about a movie, chose "movie-this" from the main menu, and enter the movie title you are looking for. This will generate information using the OMDBapi. 
 
 ![movie-this](https://user-images.githubusercontent.com/23327932/71132467-64f39d00-21ac-11ea-80c6-9c9e7afca99b.png)
 
