@@ -131,6 +131,8 @@ function readFromFile(){
 }
 
 readFromFile();
+//test by changing file contents
+
 
 function methods(method, input) {
     switch (method) {
@@ -146,10 +148,8 @@ function methods(method, input) {
         case "read-from-file":
             readFromFile();
             break;
-        default:
-        
+        default:       
     }
-
 }
 
 
@@ -165,7 +165,7 @@ function methods(method, input) {
 
 
 
-//TODO: finish read from file method
+//TODO: 
 //      finish the README w screenshots
 //BONUS: add log
-//       add year for movies so user can get exact movie if name refers to > 1 movie
+//       
