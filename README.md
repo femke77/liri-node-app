@@ -33,11 +33,11 @@ To get detailed information about a movie, chose "movie-this" from the main menu
 
 If you want LIRI to read your choices from a file rather than inputting the via the prompts, include a .txt file written in this format:
 
-name-of-method,title
-examples:
-spotify-this-song,The Sign   
-movie-this,Limitless
-concert-this,Taylor Swift
+name-of-method,title\
+examples:\
+spotify-this-song,The Sign   \
+movie-this,Limitless   \
+concert-this,Taylor Swift   \
 
 Do not include a space after the comma. Case is irrelavent. 
 
