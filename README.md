@@ -60,7 +60,8 @@ The default song is The Sign by Ace of Base. The default movie is Mr. Nobody.
 
 ![error](https://user-images.githubusercontent.com/23327932/71133475-91f57f00-21af-11ea-99e4-c2c7a94df689.png)
 
-![error-2](https://user-images.githubusercontent.com/23327932/71138780-61b6dc00-21c1-11ea-8534-6299e8afbe0a.png)
+![error2](https://user-images.githubusercontent.com/23327932/71139526-4056ef80-21c3-11ea-94c9-f13b3f2670c5.png)
+
 
 
 ## Motivation
@@ -70,7 +71,7 @@ My role in the development of this app was to code it and write the readme.md. I
 ## Credits
 
 NPM libraries: Axios, Inquirer, Dotenv, Node-Spotify-API, MomentJS.
-API's accessed via Axios:\
-http://omdbapi.com - automatic!
+API's accessed via Axios: (click to see docs)\
 [OMDBapi](http://omdbapi.com)
+[Bands in Town API](https://app.swaggerhub.com/apis-docs/Bandsintown/PublicAPI/3.0.0)
 
