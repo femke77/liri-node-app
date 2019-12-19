@@ -18,11 +18,11 @@ That will grab the information on the libraries required from the package.json a
 
 ## How to use
 
-**High Level**\
+**Overview**
 
 LIRI will prompt the user at runtime to enter one of four choices for the type of information desired. Then it will prompt the user to enter the specific search term. The requested information will appear on the command line screen if the search term was viable. If there is a problem with the search term, LIRI will let the user know. 
 
-**Detailed Instructions with Screenshots**\
+**Detailed Instructions with Screenshots**
 
 The menu will appear in list form and the user must choose 1 option.
 
