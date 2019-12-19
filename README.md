@@ -70,7 +70,7 @@ The default song is The Sign by Ace of Base. The default movie is Mr. Nobody.
 
 My role in the development of this app was to code it and write the readme.md. I did this to learn and grow my Node and NPM skills and to improve my writing of readme files. 
 
-## Credits
+## Credits and References for Libraries and APIs included
 
 NPM libraries: Axios, Inquirer, Dotenv, Node-Spotify-API, MomentJS.
 API's accessed via Axios: (click to see docs)\
