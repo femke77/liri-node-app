@@ -1,24 +1,28 @@
 # LIRI
 
-LIRI is a Language Interpretation and Recognition Interface. More specifically, LIRI is a CLI node app which allows users to enter artists, band names, song or movie titles and get relavent information about the input according to one of several methods presented at startup. The user can chose to get upcoming concert information for an artist/band or detailed information regarding songs and movies. The user can enter the method choice and search value from the cLI prompts or tell LIRI to read their command and search value from a text file. 
+LIRI is a Language Interpretation and Recognition Interface. More specifically, LIRI is a CLI node app which allows users to enter artists, band names, song or movie titles and get relavent information about the input according to one of several methods presented at startup. The user can chose to get upcoming concert information for an artist/band or detailed information regarding songs and movies. The user can enter the method choice and search value from the CLI prompts or tell LIRI to read their command and search value from a text file. 
 
 ## Tech/framework
 
 LIRI is written in JavaScript and uses Node.js runtime environment to function as a command line application. Packages that help LIRI run include inquirer, axios, moment, node-spotify-api, and dotenv. 
 
-## How to use
+## Installation
 
-**High Level**\
-LIRI will prompt the user at runtime to enter one of four choices for the type of information desired. Then it will prompt the user to enter the specific search term. The requested information will appear on the command line screen if the search term was viable. If there is a problem with the search term, LIRI will let the user know. 
-
-**Detailed Instructions with Screenshots**\
-Since this is a CLI app there is no link to a deployed project. 
+Since this is a CLI app there is no link to a deployed project. You will need to install this on your computer. 
 
 First clone the github repository to your computer. Then in the terminal of the root directory type:
 >npm i
 
 That will grab the information on the libraries required from the package.json and install them. Please provide a spotify api client and secret key in your own .env file if you want to use "spotify-this-song". Once that is included, you can run in terminal: 
 >node liri.js
+
+## How to use
+
+**High Level**\
+
+LIRI will prompt the user at runtime to enter one of four choices for the type of information desired. Then it will prompt the user to enter the specific search term. The requested information will appear on the command line screen if the search term was viable. If there is a problem with the search term, LIRI will let the user know. 
+
+**Detailed Instructions with Screenshots**\
 
 The menu will appear in list form and the user must choose 1 option.
 
@@ -62,8 +66,6 @@ The default song is The Sign by Ace of Base. The default movie is Mr. Nobody.
 
 ![error2](https://user-images.githubusercontent.com/23327932/71139526-4056ef80-21c3-11ea-94c9-f13b3f2670c5.png)
 
-
-
 ## Motivation
 
 My role in the development of this app was to code it and write the readme.md. I did this to learn and grow my Node and NPM skills and to improve my writing of readme files. 
@@ -72,6 +74,6 @@ My role in the development of this app was to code it and write the readme.md. I
 
 NPM libraries: Axios, Inquirer, Dotenv, Node-Spotify-API, MomentJS.
 API's accessed via Axios: (click to see docs)\
-[OMDBapi](http://omdbapi.com)
+[OMDBapi](http://omdbapi.com)\
 [Bands in Town API](https://app.swaggerhub.com/apis-docs/Bandsintown/PublicAPI/3.0.0)
 
