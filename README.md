@@ -12,7 +12,12 @@ LIRI is written in JavaScript and uses Node.js runtime environment to function a
 LIRI will prompt the user at runtime to enter one of four choices for the type of information desired. Then it will prompt the user to enter the specific search term. The requested information will appear on the command line screen if the search term was viable. If there is a problem with the search term, LIRI will let the user know. 
 
 **Detailed Instructions with Screenshots**\
-Please provide a spotify api client and secret key in your own .env file. Once that is included, you can run in terminal: 
+Since this is a CLI app there is no link to a deployed project. 
+
+First clone the github repository to your computer. Then in the terminal of the root directory type:
+>npm i
+
+That will grab the information on the libraries required from the package.json and install them. Please provide a spotify api client and secret key in your own .env file if you want to use "spotify-this-song". Once that is included, you can run in terminal: 
 >node liri.js
 
 The menu will appear in list form and the user must choose 1 option.
@@ -35,9 +40,9 @@ If you want LIRI to read your choices from a file rather than inputting the via 
 
 name-of-method,title\
 examples:\
-spotify-this-song,The Sign   \
-movie-this,Limitless   \
-concert-this,Taylor Swift   \
+spotify-this-song,The Sign\
+movie-this,Limitless\
+concert-this,Taylor Swift   
 
 Do not include a space after the comma. Case is irrelavent. 
 
@@ -49,6 +54,23 @@ movie-this,the matrix
 
 ![read-from-file](https://user-images.githubusercontent.com/23327932/71132730-34f8c980-21ad-11ea-8a97-f94f72b9a8c9.png)
 
+**ERRORS**\
+Errors are handled when the user enters bad input, if nothing is found for a search term, or if the user fails to input any search term.
+The default song is The Sign by Ace of Base. The default movie is Mr. Nobody. 
+
+![error](https://user-images.githubusercontent.com/23327932/71133475-91f57f00-21af-11ea-99e4-c2c7a94df689.png)
+
+![error-2](https://user-images.githubusercontent.com/23327932/71138780-61b6dc00-21c1-11ea-8534-6299e8afbe0a.png)
 
 
+## Motivation
+
+My role in the development of this app was to code it and write the readme.md. I did this to learn and grow my Node and NPM skills and to improve my writing of readme files. 
+
+## Credits
+
+NPM libraries: Axios, Inquirer, Dotenv, Node-Spotify-API, MomentJS.
+API's accessed via Axios:\
+http://omdbapi.com - automatic!
+[OMDBapi](http://omdbapi.com)
 

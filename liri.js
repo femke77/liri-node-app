@@ -20,11 +20,11 @@ inquirer.prompt([
         type: "input",
         name: "userInput",
         message: "Enter the artist, band name, song, or movie title or hit enter if reading from file."
-        
+
     }
 
 ]).then(function (response) {
-   
+
     methods(response.method, response.userInput);
 
 }).catch(function (error) {
@@ -45,34 +45,37 @@ function methods(method, input) {
         case "read-from-file":
             readFromFile();
             break;
-        default:
     }
 }
 
-function concertThis(userInput){
-    
+function concertThis(userInput) {
+
     var queryURL = "https://rest.bandsintown.com/artists/" + userInput + "/events?app_id=codingbootcamp";
     axios.get(queryURL)
-    .then(function(response){
-        var format = "YYYY-MM-DD HH:mm:ss"
-        response.data.forEach(element => {
-            var dateTime = element.datetime;
-            dateTime = dateTime.split('T').join(' ');
-            var convertDateTime = moment(dateTime, format);
-            
-            console.log(`***************************
+        .then(function (response) {
+            if (response.data.length > 0) {
+                var format = "YYYY-MM-DD HH:mm:ss"
+                response.data.forEach(element => {
+                    var dateTime = element.datetime;
+                    dateTime = dateTime.split('T').join(' ');
+                    var convertDateTime = moment(dateTime, format);
+                    console.log(`***************************
 Venue: ${element.venue.name}
 Location: ${element.venue.city}, ${element.venue.region}
 Date: ${convertDateTime.format("MM/DD/YY hh:mm A")}`)
+                });
+            } else {
+                console.log("No upcoming events found for that artist or band.")
+            }
+        })
+        .catch(function (error) {
+            console.log(`${error}`);
+            console.log(`Please enter a band or artist to search.`);
         });
-    }) 
-    .catch(function(error){
-        console.log(`An error has occured: ${error}`);
-    });
 }
 
 
-function spotifyThis(userInput) {  
+function spotifyThis(userInput) {
     if (userInput === "") {
         userInput = '"the sign"year:1993'
     }
@@ -101,16 +104,16 @@ Preview link: ${element.preview_url}`)
         });
 }
 
-function movieThis(userInput){
+function movieThis(userInput) {
 
-    if (userInput === ""){
+    if (userInput === "") {
         userInput = "Mr. Nobody";
     }
     var queryUrl = "http://www.omdbapi.com/?t=" + userInput + "&type=movie&plot=short&apikey=trilogy";
     axios.get(queryUrl)
-    .then(function(response){
-        if (response.data.Response === "True" ) {
-            console.log(`
+        .then(function (response) {
+            if (response.data.Response === "True") {
+                console.log(`
 Movie Title: ${response.data.Title}
 Release Year: ${response.data.Year}
 IMDB Rating: ${response.data.imdbRating}
@@ -118,23 +121,23 @@ Rotten Tomato Rating: ${response.data.Ratings[1].Value}
 Production country: ${response.data.Country}
 Plot: ${response.data.Plot}
 Actors: ${response.data.Actors}`);
-        } else {
-            console.log("No movie found with that title. Try again?")
-        }
-        
-    }).catch(function(error){
-        console.log(`An error has occured: ${error}`);
-    })
+            } else {
+                console.log("No movie found with that title. Try again?")
+            }
+
+        }).catch(function (error) {
+            console.log(`An error has occured: ${error}`);
+        })
 }
 
-function readFromFile(){
-    fs.readFile("random.txt", "utf8", function(error, data){
+function readFromFile() {
+    fs.readFile("random.txt", "utf8", function (error, data) {
         if (error) {
             console.log(`An error has occured: ${error}`);
         }
         dataArray = data.split(",")
         var method = dataArray[0];
         var lookup = dataArray[1];
-        methods(method, lookup);      
+        methods(method, lookup);
     });
 }
