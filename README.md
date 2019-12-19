@@ -72,8 +72,8 @@ My role in the development of this app was to code it and write the readme.md. I
 
 ## Credits and References for Libraries and APIs included
 
-NPM libraries: Axios, Inquirer, Dotenv, Node-Spotify-API, MomentJS.
-API's accessed via Axios: (click to see docs)\
+NPM libraries: Axios, Inquirer, Dotenv, Node-Spotify-API, MomentJS.\
+APIs accessed via Axios: (click to see docs)\
 [OMDBapi](http://omdbapi.com)\
 [Bands in Town API](https://app.swaggerhub.com/apis-docs/Bandsintown/PublicAPI/3.0.0)
 
